@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Message;
 use Illuminate\Http\Request;
 
 class MessagesController extends Controller
@@ -13,8 +14,8 @@ class MessagesController extends Controller
      */
     public function index()
     {
-        return view('messages.index');
-        //return "messagee controller - index";
+        $messages = Message::all();
+        return view('messages.index')->with('messages', $messages);
     }
 
     /**
@@ -24,7 +25,7 @@ class MessagesController extends Controller
      */
     public function create()
     {
-        //
+       return view('messages.create');
     }
 
     /**
@@ -35,7 +36,12 @@ class MessagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'message' => 'required|min:1|max:255'
+        ]);
+
+        $message = Message::create($data);
+        return redirect()->route('messages.show',$message->id);
     }
 
     /**
@@ -46,7 +52,9 @@ class MessagesController extends Controller
      */
     public function show($id)
     {
-        //
+        $message = Message::findOrFail($id);
+        return view('messages.show')->with('message', $message);
+
     }
 
     /**
@@ -57,7 +65,8 @@ class MessagesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $message = Message::findOrFail($id);
+        return view('messages.edit')->with('message', $message);
     }
 
     /**
@@ -69,7 +78,9 @@ class MessagesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $message = Message::find($request->id);
+        $message->update($request->only('message'));
+        return view('messages.show')->with('message', $message);
     }
 
     /**
@@ -78,8 +89,10 @@ class MessagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, Message $message)
     {
-        //
+        $message = Message::findOrFail($request->id);
+        $message->delete();
+        return redirect()->route('messages');
     }
 }
