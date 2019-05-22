@@ -12,6 +12,9 @@
         <a class="nav-link" href="{{route('messages')}}">Messages</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="{{route('replies')}}">Message Replies</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="{{route('login')}}">Login</a>
       </li>
     </ul>

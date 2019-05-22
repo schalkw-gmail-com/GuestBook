@@ -28,3 +28,11 @@ Route::get('/messages/edit/{id}', 'MessagesController@edit')->name('messages.edi
 Route::get('/messages/new', 'MessagesController@create')->name('messages.create');
 Route::post('/messages/{id}', 'MessagesController@update')->name('messages.update');
 Route::delete('/messages/{id}', 'MessagesController@destroy')->name('messages.destroy');
+
+Route::get('/messagereplies', 'MessageRepliesController@index')->name('replies');
+Route::post('/messagereplies', 'MessageRepliesController@store')->name('replies.store');
+Route::get('/messagereplies/show/{id}', 'MessageRepliesController@show')->name('replies.show');
+Route::get('/messagereplies/edit/{id}', 'MessageRepliesController@edit')->name('replies.edit');
+Route::get('/messagereplies/new', 'MessageRepliesController@create')->name('replies.create');
+Route::post('/messagereplies/{id}', 'MessageRepliesController@update')->name('replies.update');
+Route::delete('/messagereplies/{id}', 'MessageRepliesController@destroy')->name('replies.destroy');
