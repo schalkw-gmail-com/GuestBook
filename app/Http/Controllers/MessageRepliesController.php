@@ -44,6 +44,7 @@ class MessageRepliesController extends Controller
 
         $reply = new MessageReplies();
         $reply->reply = $request->reply;
+        $reply->user()->associate(Auth::id());
 
         $message = Message::findOrFail($request->message_id);
         $message->replies()->save($reply);

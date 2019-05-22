@@ -14,4 +14,9 @@ class Message extends Model
     {
         return $this->hasMany('App\MessageReplies');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Message;
 use Illuminate\Http\Request;
+use Auth;
 
 class MessagesController extends Controller
 {
+
+    public function __construct()
+    {
+        //$this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -40,7 +47,12 @@ class MessagesController extends Controller
             'message' => 'required|min:1|max:255'
         ]);
 
-        $message = Message::create($data);
+        //$message = Message::created($data);
+        $message = Message::make($data);
+
+        $message->user()->associate(Auth::id());
+        $message->save();
+
         return redirect()->route('messages.show',$message->id);
     }
 

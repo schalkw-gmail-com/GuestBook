@@ -14,4 +14,9 @@ class MessageReplies extends Model
     {
         return $this->belongsTo('App\Message');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

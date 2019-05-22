@@ -3,6 +3,10 @@
 @section('content')
   <div class="container">
     <h1>{{ $message->message }}</h1>
+
+    <h6>Submitted By: {{ $message->user->name }}, {{ $message->created_at->diffForHumans() }}</h6>
+
+
     @if ($message->replies->count() > 0)
       @foreach ($message->replies as $reply)
         <div class="panel panel-default">
