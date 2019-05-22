@@ -5,7 +5,7 @@
   @include('__includes/nav_messages')
   <div class="container">
     <div class="jumbotron">
-      <h1>Message Reply Index</h1>
+      <h1>Messages Index</h1>
       @foreach($messages as $message)
         <article>
           <h4>

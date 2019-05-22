@@ -53,6 +53,9 @@ class MessagesController extends Controller
     public function show($id)
     {
         $message = Message::findOrFail($id);
+       // $e = $message->replies();
+       // dd($e);
+      //  dd($message);
         return view('messages.show')->with('message', $message);
 
     }

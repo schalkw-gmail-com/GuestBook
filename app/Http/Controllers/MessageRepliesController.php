@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Message;
 use App\MessageReplies;
 use Illuminate\Http\Request;
 
@@ -37,11 +38,33 @@ class MessageRepliesController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'reply' => 'required|min:1|max:255'
+            'reply' => 'required|min:1|max:255',
+            'message_id' => 'required|integer'
         ]);
 
-        $reply = MessageReplies::create($data);
-        return redirect()->route('replies.show',$reply->id);
+        $reply = new MessageReplies();
+        $reply->reply = $request->reply;
+
+        $message = Message::findOrFail($request->message_id);
+        $message->replies()->save($reply);
+
+            //dd($reply);
+            //dd($message);
+        return redirect()->route('messages.show',$message->id);
+
+/*
+
+        $this->validate($request, [
+            'content' => "required|min:15",
+            'question_id' => 'required|integer'
+        ]);
+        $answer = new Answer();
+        $answer->content = $request->content;
+
+
+        $question = Question::findOrFail($request->question_id);
+        $question->answers()->save($answer);
+        return redirect()->route('questions.show', $question->id);*/
     }
 
     /**
@@ -90,6 +113,7 @@ class MessageRepliesController extends Controller
      */
     public function destroy(Request $request, MessageReplies $reply)
     {
+        dd('eee');
         $reply = MessageReplies::findOrFail($request->id);
         $reply->delete();
         return redirect()->route('replies');

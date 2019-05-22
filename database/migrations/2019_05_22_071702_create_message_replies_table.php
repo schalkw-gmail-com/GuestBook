@@ -15,8 +15,11 @@ class CreateMessageRepliesTable extends Migration
     {
         Schema::create('message_replies', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('message_id')->unsigned();
             $table->string('reply');
             $table->timestamps();
+
+            $table->foreign('message_id')->references('id')->on('messages')->onDelete('cascade');
         });
     }
 
@@ -27,6 +30,10 @@ class CreateMessageRepliesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('message_reply');
+        Schema::table('message_replies', function (Blueprint $table) {
+            $table->dropForeign('message_replies_message_id_foreign');
+        });
+
+        Schema::dropIfExists('message_replies');
     }
 }

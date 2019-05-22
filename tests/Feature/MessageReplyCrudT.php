@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class MessageReplyCrudTest extends TestCase
+class MessageReplyCrudT extends TestCase
 {
     //can we access /messagereplies
     public function test_can_we_reach_the_message_replies_uri()
