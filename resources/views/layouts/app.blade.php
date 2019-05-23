@@ -33,15 +33,17 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        @if (Auth::check() && Auth::user()->hasRole('ROLE_USER')   )
+                        @if (Auth::check() && (Auth::user()->hasRole('ROLE_USER') || (Auth::user()->hasRole('ROLE_ADMIN')))   )
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('messages.index') }}">Messages</a>
+                                <a class="nav-link" href="{{ route('messages.index') }}">My Messages</a>
                             </li>
                         @endif
+                            @if (Auth::check() && ((Auth::user()->hasRole('ROLE_ADMIN')))   )
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('usermessages') }}">User Messages</a>
+                                </li>
+                            @endif
                     </ul>
-
-
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->

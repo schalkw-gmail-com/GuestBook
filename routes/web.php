@@ -21,7 +21,7 @@ use App\Role;
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('index');
 Route::resource('messages', 'MessagesController')->middleware('check_user_role:' . \App\UserRole::ROLE_USER);
-
+Route::get('/usermessages', 'MessagesController@usermessage')->name('usermessages')->middleware('check_user_role:' . \App\UserRole::ROLE_ADMIN);
 
 
 
@@ -39,7 +39,7 @@ Route::resource('messages', 'MessagesController')->middleware('check_user_role:'
 //Route::delete('/messages/{id}', 'MessagesController@destroy')->name('messages.destroy')->middleware('auth');
 //
 //
-//Route::resource('messagerepliies', 'MessageRepliesController', ['except' => ['index', 'create', 'show']]);
+ Route::resource('messagereplies', 'MessageRepliesController', ['except' => ['index', 'create', 'show']]);
 
 //$w = new \App\UserRole();
 ////dd($w);

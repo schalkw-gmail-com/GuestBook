@@ -26,6 +26,11 @@ class MessagesController extends Controller
         return view('messages.index')->with('messages', $messages);
     }
 
+    public function usermessage(){
+        $messages = Message::all();
+        return view('messages.index')->with('messages', $messages);
+    }
+
 
     /**
      * Show the form for creating a new resource.

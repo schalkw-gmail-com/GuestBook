@@ -8,7 +8,13 @@
     <a href="{{route('messages.create')}}" class="btn btn-primary">Submit a message</a>
 
     <div class="jumbotron">
-      <h1>{{ Auth::user()->name }}'s Messages:</h1>
+      <h1>
+        @if (Auth::check() && ((Auth::user()->hasRole('ROLE_ADMIN')) && Route::current()->getName() == 'usermessages')   )
+          Everyones Messages:
+        @else
+          {{ Auth::user()->name }}'s Messages:
+        @endif
+      </h1>
 
       @if(count($messages)  > 0)
         <table class="table">
@@ -27,6 +33,7 @@
               <td>{{ substr($message->content,0,10) }} ...</td>
               <td><a href="{{route('messages.show',$message->id)}}" class="btn btn-info">View</a></td>
               <td><a href="{{route('messages.edit',$message->id)}}" class="btn btn-warning">Edit</a></td>
+              {{--<td><a href="{{route('messagereplies.edit',$message->id)}}" class="btn btn-secondary">Reply</a></td>--}}
               <td>
                 <form action="{{ route('messages.destroy',$message->id) }}" method="POST">
                   {{ csrf_field() }}
