@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Message;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,7 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $messages = Message::orderBy('id', 'desc')->paginate(3);
+
+        return view('home')->with('messages', $messages);
     }
 
     public function admin(){

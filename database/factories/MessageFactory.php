@@ -7,6 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Message::class, function (Faker $faker) {
     return [
-        'message' => $faker->title
+        'title' => $faker->title,
+        'content' => $faker->text
     ];
 });

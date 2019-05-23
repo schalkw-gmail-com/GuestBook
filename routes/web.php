@@ -19,12 +19,17 @@
 use App\Role;
 
 Auth::routes();
-//
 Route::get('/', 'HomeController@index')->name('index');
+Route::resource('messages', 'MessagesController')->middleware('check_user_role:' . \App\UserRole::ROLE_USER);
+Route::get('/usermessages', 'MessagesController@usermessage')->name('usermessages')->middleware('check_user_role:' . \App\UserRole::ROLE_ADMIN);
+
+
+
+
 ////Route::get('/home', 'HomeController@index')->name('index');
 //
 //
-Route::get('/messages', 'MessagesController@index')->name('messages');
+//Route::get('/messages', 'MessagesController@index')->name('messages');
 //
 //Route::post('/messages', 'MessagesController@store')->name('messages.store')->middleware('auth');
 //Route::get('/messages/show/{id}', 'MessagesController@show')->name('messages.show')->middleware('auth');
@@ -34,7 +39,7 @@ Route::get('/messages', 'MessagesController@index')->name('messages');
 //Route::delete('/messages/{id}', 'MessagesController@destroy')->name('messages.destroy')->middleware('auth');
 //
 //
-//Route::resource('messagerepliies', 'MessageRepliesController', ['except' => ['index', 'create', 'show']]);
+ Route::resource('messagereplies', 'MessageRepliesController', ['except' => ['index', 'create', 'show']]);
 
 //$w = new \App\UserRole();
 ////dd($w);
@@ -42,5 +47,5 @@ Route::get('/messages', 'MessagesController@index')->name('messages');
 //
 //   // Route::get('admin/routes', 'HomeController@admin')->middleware('check_user_role');
 
-Route::get('admin/finance', function () {
-})->middleware('check_user_role:' . \App\UserRole::ROLE_FINANCE);
+//Route::get('admin/finance', function () {
+//})->middleware('check_user_role:' . \App\UserRole::ROLE_ADMIN);

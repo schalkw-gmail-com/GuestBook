@@ -16,7 +16,7 @@ class CreateMessageRepliesTable extends Migration
         Schema::create('message_replies', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('message_id')->unsigned();
-            $table->string('reply');
+            $table->text('content');
             $table->timestamps();
 
             $table->foreign('message_id')->references('id')->on('messages')->onDelete('cascade');

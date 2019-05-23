@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class MessageReplies extends Model
 {
     protected $fillable = [
-        'reply'
+        'content',
+        'title'
     ];
 
     public function message()
