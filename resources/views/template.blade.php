@@ -12,6 +12,34 @@
 </head>
 <body>
 @include('__includes/nav_topnav')
+<h1>  SSSSS</h1>
+
+@guest
+  Log in
+@else
+  {{ Auth::user() }}
+
+  @foreach (Auth::user()->roles as $user)
+    <p>This is user {{ $user }}</p>
+  @endforeach
+@endguest
+<div >
+  <a class="dropdown-item" href="{{ route('logout') }}"
+     onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+    {{ __('Logout') }}
+  </a>
+
+  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+  </form>
+</div>
+
+
+
+
+
+
 
 @yield('content')
 
