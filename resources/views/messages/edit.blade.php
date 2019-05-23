@@ -1,15 +1,29 @@
 @extends('template')
 
 @section('content')
-  <div class="container">
 
-    <form action="{{route('messages.update',$message->id)}}" method="POST">
-      {{ csrf_field() }}
-      <h4>Ask Your Question :</h4>
-      <input type="text" class="form-control" id="message" name="message" value="{{ $message->message }} "/>
-      <input type="text" name="id" id="id" value="{{ $message->id }}"/>
-      <button class="btn btn-primary">Submit Question</button>
-    </form>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header">Edit your message :</div>
 
-  </div>
+            <div class="card-body">
+
+              <form action="{{route('messages.update',$message->id)}}" method="POST">
+                {{ csrf_field() }}
+                @method('PATCH')
+                <input type="text" name="title"  class="form-control" id="title" value="{{ $message->title }}"/>
+                <textarea class="form-control" id="content" name="content"  rows="4"> {{ $message->content }}  </textarea>
+                <input type="hidden" name="id" id="id" value="{{ $message->id }}"/>
+                <button class="btn btn-primary">Save</button>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 @endsection

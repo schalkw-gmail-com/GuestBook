@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Message;
 use Illuminate\Http\Request;
 use Auth;
+use DB;
 
 class MessagesController extends Controller
 {
@@ -21,9 +22,10 @@ class MessagesController extends Controller
      */
     public function index()
     {
-        $messages = Message::all();
+        $messages = Message::where(['user_id'=>Auth::user()->id])->get();
         return view('messages.index')->with('messages', $messages);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -44,7 +46,8 @@ class MessagesController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'message' => 'required|min:1|max:255'
+            'content' => 'required|min:1',
+            'title' => 'required|min:1|max:255'
         ]);
 
         //$message = Message::created($data);
@@ -80,6 +83,7 @@ class MessagesController extends Controller
      */
     public function edit($id)
     {
+
         $message = Message::findOrFail($id);
         return view('messages.edit')->with('message', $message);
     }
@@ -93,8 +97,15 @@ class MessagesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $message = Message::find($request->id);
-        $message->update($request->only('message'));
+        $message = Message::findOrFail($request->id);
+
+        $data = $request->validate([
+            'content' => 'required|min:1',
+            'title' => 'required|min:1|max:255'
+        ]);
+
+        $message->update($data);
+        $message->save();
         return view('messages.show')->with('message', $message);
     }
 
@@ -106,8 +117,8 @@ class MessagesController extends Controller
      */
     public function destroy(Request $request, Message $message)
     {
-        $message = Message::findOrFail($request->id);
+        $message = Message::findOrFail($message->id);
         $message->delete();
-        return redirect()->route('messages');
+        return redirect()->route('messages.index');
     }
 }
