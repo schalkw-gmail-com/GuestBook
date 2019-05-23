@@ -32,26 +32,34 @@
               <td>{{ $message->title }}</td>
               <td>{{ substr($message->content,0,10) }} ...</td>
               <td><a href="{{route('messages.show',$message->id)}}" class="btn btn-info">View</a></td>
-              <td><a href="{{route('messages.edit',$message->id)}}" class="btn btn-warning">Edit</a></td>
-              {{--<td><a href="{{route('messagereplies.edit',$message->id)}}" class="btn btn-secondary">Reply</a></td>--}}
               <td>
-                <form action="{{ route('messages.destroy',$message->id) }}" method="POST">
-                  {{ csrf_field() }}
-                  @method('DELETE')
-                  <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
+                <a href="{{route('messages.edit',$message->id)}}" class="btn btn-warning">
+                  @if (Auth::check() && ((Auth::user()->hasRole('ROLE_ADMIN')) ))
+                    Reply
+                    @else
+                    Edit
+                  @endif
+                </a>
               </td>
-            </tr>
-          @endforeach
-        </table>
-        @else
-          You do not have any messages yet!
-      @endif
-    </div>
+{{--<td><a href="{{route('messagereplies.edit',$message->id)}}" class="btn btn-secondary">Reply</a></td>--}}
+<td>
+ <form action="{{ route('messages.destroy',$message->id) }}" method="POST">
+   {{ csrf_field() }}
+   @method('DELETE')
+   <button type="submit" class="btn btn-danger">Delete</button>
+ </form>
+</td>
+</tr>
+@endforeach
+</table>
+@else
+You do not have any messages yet!
+@endif
+</div>
 
 
 
 
 
-  </div>
+</div>
 @endsection

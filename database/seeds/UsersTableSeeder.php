@@ -30,5 +30,14 @@ class UsersTableSeeder extends Seeder
 
         $user->setRoles([\App\UserRole::ROLE_USER]);
         $user->save();
+
+        $user = User::create([
+            'name' => "Jan",
+            'email' =>'jan@jan.com',
+            'password' => bcrypt('jan')
+        ]);
+
+        $user->setRoles([\App\UserRole::ROLE_USER]);
+        $user->save();
     }
 }

@@ -18,13 +18,18 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        body{
+            background-color: white;
+            }
+    </style>
 </head>
 <body>
     <div id="app">
 
         <div class="container">
             <div class="row justify-content-center">
-                <img src="top.jpg">
+                <img src="\top.jpg">
             </div>
         </div>
         <div class="container">

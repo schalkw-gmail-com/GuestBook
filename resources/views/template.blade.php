@@ -15,31 +15,6 @@
 
 @include('__includes/nav_topnav')
 
-
-{{--<h1>SSSSS</h1>--}}
-
-{{--@guest--}}
-  {{--Log in--}}
-{{--@else--}}
-  {{--{{ Auth::user() }}--}}
-
-  {{--@foreach (Auth::user()->roles as $user)--}}
-    {{--<p>This is user {{ $user }}</p>--}}
-  {{--@endforeach--}}
-{{--@endguest--}}
-{{--<div >--}}
-  {{--<a class="dropdown-item" href="{{ route('logout') }}"--}}
-     {{--onclick="event.preventDefault();--}}
-                                                     {{--document.getElementById('logout-form').submit();">--}}
-    {{--{{ __('Logout') }}--}}
-  {{--</a>--}}
-
-  {{--<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
-    {{--@csrf--}}
-  {{--</form>--}}
-{{--</div>--}}
-
-{{--@yield('content')--}}
 <script src="{{ asset('js/app.js') }}" ></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
