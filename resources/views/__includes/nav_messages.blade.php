@@ -4,7 +4,7 @@
     <ul class="navbar-nav">
 
       <li class="nav-item">
-        <a class="nav-link" href="{{route('messages')}}">Messages</a>
+        <a class="nav-link" href="{{route('messages.index')}}">Messages</a>
       </li>
 
     </ul>

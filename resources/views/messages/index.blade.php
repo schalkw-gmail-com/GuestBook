@@ -5,11 +5,11 @@
   @include('__includes/nav_messages')
   <div class="container">
     <div class="jumbotron">
-      <h1>Messages Index</h1>
+      <h1>{{ Auth::user()->name }}'s Messages</h1>
       @foreach($messages as $message)
         <article>
           <h4>
-            <a href="{{route('messages.show',$message->id)}}">{{ $message->message }}</a>
+            <a href="{{route('messages.show',$message->id)}}">{{ $message->content }}</a>
           </h4>
         </article>
       @endforeach

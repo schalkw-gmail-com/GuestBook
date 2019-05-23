@@ -6,5 +6,4 @@
             <h1>Welcome to the Guestbook</h1>
         </div>
     </div>
-
 @endsection

@@ -28,5 +28,26 @@ class MessageAndReplySeeder extends Seeder
         ]);
         $reply->user()->associate($admin);
         $message->replies()->save($reply);
+
+        $message = \App\Message::create([
+            'content' => "The is the second message ",
+            'title' =>'Message number 2'
+        ]);
+        $message->user()->associate($user->id);
+        $message->save();
+
+        $message = \App\Message::create([
+            'content' => "The is the third message ",
+            'title' =>'Message number 3'
+        ]);
+        $message->user()->associate($user->id);
+        $message->save();
+
+        $message = \App\Message::create([
+            'content' => "The is the forth message ",
+            'title' =>'Message number 4'
+        ]);
+        $message->user()->associate($user->id);
+        $message->save();
     }
 }

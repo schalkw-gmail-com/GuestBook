@@ -21,8 +21,8 @@
             if ($user->hasRole(UserRole::ROLE_ADMIN)) {
                 return true;
             }
-            else if($user->hasRole(UserRole::ROLE_MANAGEMENT)) {
-                $managementRoles = UserRole::getAllowedRoles(UserRole::ROLE_MANAGEMENT);
+            else if($user->hasRole(UserRole::ROLE_USER)) {
+                $managementRoles = UserRole::getAllowedRoles(UserRole::ROLE_USER);
 
                 if (in_array($role, $managementRoles)) {
                     return true;
