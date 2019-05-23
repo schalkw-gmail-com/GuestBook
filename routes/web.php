@@ -43,4 +43,4 @@ Route::get('/messages', 'MessagesController@index')->name('messages');
 //   // Route::get('admin/routes', 'HomeController@admin')->middleware('check_user_role');
 
 Route::get('admin/finance', function () {
-})->middleware('check_user_role:' . \App\UserRole::ROLE_FINANCE);
+})->middleware('check_user_role:' . \App\UserRole::ROLE_ADMIN);
